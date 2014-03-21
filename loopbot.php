@@ -82,7 +82,7 @@ $cb->setToken( TWITTER_TOKEN, TWITTER_TOKENSECRET );
 foreach ( loopchat_get_stars() as $star ) {
 
 	/* Make sure that the tweet is fresh */
-	if ( ( time() - (60*15) ) > strtotime( $star->published ) ) {
+	if ( ( time() - (60*15) ) < strtotime( $star->published ) ) {
 		break;
 	}
 
