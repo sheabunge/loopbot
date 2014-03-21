@@ -1,0 +1,14 @@
+{
+    "name": "bungeshea/loopbot",
+    "description": "Twitter bot for The Loop chat room",
+    "authors": [
+        {
+            "name": "Shea Bunge",
+            "email": "info@bungeshea.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3",
+        "jublonet/codebird-php": "~2.4"
+    }
+}
