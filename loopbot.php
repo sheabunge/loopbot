@@ -39,7 +39,7 @@ function wpse_twitter_handle( $wpse_username, $prepend = '@', $fallback = false 
 		'Stephen Harris' => 'stephenharris88',
 		'Chip Bennett'   => 'chip_bennett',
 		'lkraav'         => 'lkraav',
-		'GhostToast'    => '_ghosttoast',
+		'GhostToast'     => '_ghosttoast',
 	);
 
 	if ( isset( $twitter_handles[ $wpse_username ] ) ) {
@@ -50,52 +50,24 @@ function wpse_twitter_handle( $wpse_username, $prepend = '@', $fallback = false 
 }
 
 /**
- * Get the latest starred items from The Loop
- * @return array
- */
-function loopchat_get_stars() {
-	$xml = new SimpleXMLElement( 'http://chat.stackexchange.com/feeds/rooms/starred/6', null, true );
-	$items = array();
-
-	foreach ( $xml->entry as $item ) {
-		$items[] = (object) array(
-			'text' => (string) $item->title,
-			'link' => (string) $item->link[ 'href' ],
-			'author' => (string) $item->author->name,
-			'published' => $item->published
-		);
-	}
-
-	return $items;
-}
-
-/**
  * Set up Codebird
  */
 \Codebird\Codebird::setConsumerKey( TWITTER_KEY, TWITTER_SECRET );
 $cb = \Codebird\Codebird::getInstance();
 $cb->setToken( TWITTER_TOKEN, TWITTER_TOKENSECRET );
 
-/**
- * Run the bot
- */
-foreach ( loopchat_get_stars() as $star ) {
+/* Set up variables */
+$text = strip_tags( $_POST[ 'title' ] );
 
-	/* Make sure that the tweet is fresh */
-	if ( ( time() - (60*15) ) < strtotime( $star->published ) ) {
-		break;
-	}
+/* Attempt to convert a WPSE username into a Twitter handle */
+$author = wpse_twitter_handle( $_POST['author'], '@', $_POST['author'] );
 
-	/* Attempt to convert a WPSE username into a Twitter handle */
-	$author = wpse_twitter_handle( $star->author, '@', $star->author );
+/* Build tweet text */
+$tweet = $text . ' #loopchat via ' .  $author;
 
-	/* Build tweet text */
-	$tweet = $star->text . ' #loopchat via ' .  $author;
+/* Send the tweet to twitter */
+$params = array(
+	'status' => $tweet
+);
 
-	/* Send the tweet to twitter */
-	$params = array(
-		'status' => $tweet
-	);
-
-	$tweet = $cb->statuses_update( $params );
-}
+$reply = $cb->statuses_update( $params );
