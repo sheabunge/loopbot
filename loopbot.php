@@ -12,6 +12,11 @@
 /* Constants for Twitter app keys */
 require __DIR__ . '/config.php';
 
+/* Make sure the request is authorized */
+if ( KEY !== @$_POST['key'] ) {
+	die( 'Not authorized' );
+}
+
 /* Load Composer dependencies */
 require __DIR__ . '/vendor/autoload.php';
 
