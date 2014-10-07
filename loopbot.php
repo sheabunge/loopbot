@@ -6,7 +6,7 @@
  * Set to run as a cron job every 15 minutes
  *
  * @author Shea Bunge <info@bungeshea.com>
- * @version 0.3
+ * @version 0.4
  */
 
 /* Constants for Twitter app keys */
