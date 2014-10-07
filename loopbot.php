@@ -71,6 +71,22 @@ $cb->setToken( TWITTER_TOKEN, TWITTER_TOKENSECRET );
 /* Set up variables */
 $text = strip_tags( $_POST[ 'title' ] );
 
+/* Replace direct replies with @mentions */
+if ( preg_match( '/^:(\d+) /', $text ) ) {
+
+	/* Extract the real username from the description field */
+	preg_match( "/^@([\w\d_\-']+) /", $_POST[ 'description' ], $matches );
+
+	/* Try to convert wpse username to Twitter handle */
+	$atname = wpse_twitter_handle( $matches[1], '', $matches[1] );
+
+	/* Add an @ symbol and a space */
+	$atname = '@' . $atname . ' ';
+
+	/* Replace the user ID with the Twitter handle */
+	$text = preg_replace( '/^:(\d+) /', $atname, $text );
+}
+
 /* Attempt to convert a WPSE username into a Twitter handle */
 $author = wpse_twitter_handle( $_POST['author'], '@', $_POST['author'] );
 
