@@ -52,6 +52,7 @@ function wpse_twitter_handle( $wpse_username, $prepend = '@', $fallback = false 
 		'lkraav'         => 'lkraav',
 		'GhostToast'     => '_ghosttoast',
 		'Sisir'          => 'prionkor',
+		'anu'            => 'anu',
 	);
 
 	if ( isset( $twitter_handles[ $wpse_username ] ) ) {
