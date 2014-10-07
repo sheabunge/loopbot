@@ -41,6 +41,7 @@ function wpse_twitter_handle( $wpse_username, $prepend = '@', $fallback = false 
 		'toscho'         => 'toscho',
 		'kaiser'         => 'unserkaiser',
 		'bungeshea'      => 'bungeshea',
+		'bungeshea'      => 'bungeshea_',
 		'Wyck'           => 'wycks_s',
 		'Tom J Nowell'   => 'Tarendai',
 		'ungestaltbar'   => 'ungestaltbar',
