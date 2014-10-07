@@ -41,7 +41,7 @@ function wpse_twitter_handle( $wpse_username, $prepend = '@', $fallback = false 
 		'toscho'         => 'toscho',
 		'kaiser'         => 'unserkaiser',
 		'bungeshea'      => 'bungeshea',
-		'bungeshea'      => 'bungeshea_',
+		'bungeshea_'     => 'bungeshea',
 		'Wyck'           => 'wycks_s',
 		'Tom J Nowell'   => 'Tarendai',
 		'ungestaltbar'   => 'ungestaltbar',
@@ -55,6 +55,7 @@ function wpse_twitter_handle( $wpse_username, $prepend = '@', $fallback = false 
 		'Sisir'          => 'prionkor',
 		'anu'            => 'anu',
 		'mebu83'         => 'Mebu83',
+		'G. M.'          => 'gmazzap',
 	);
 
 	if ( isset( $twitter_handles[ $wpse_username ] ) ) {
