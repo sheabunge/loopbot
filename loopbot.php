@@ -12,6 +12,12 @@
 /* Constants for Twitter app keys */
 require __DIR__ . '/config.php';
 
+/* Write log */
+$log_file = 'loopbot.log';
+$log = file_get_contents( $log_file );
+$log .= print_r( $_POST, true ) . "\n\n";
+file_put_contents( $log_file, $log );
+
 /* Make sure the request is authorized */
 if ( KEY !== @$_POST['key'] ) {
 	die( 'Not authorized' );
